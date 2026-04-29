@@ -1,0 +1,19 @@
+{
+  "name": "fcspw",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Playwright + TypeScript autotests for focusgroup.co.uk",
+  "scripts": {
+    "test": "playwright test",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.0",
+    "@playwright/test": "^1.49.0",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:focusgroup.co.uk)",
+      "Bash(npx playwright *)",
+      "Bash(npm ls *)",
+      "Bash(npx tsc *)",
+      "PowerShell($resp = Invoke-WebRequest -Uri \"https://focusgroup.co.uk/\" -UseBasicParsing; $html = $resp.Content; \"=== TEL link occurrences ===\"; \\([regex]::Matches\\($html, 'tel:0330\\\\d+'\\) | ForEach-Object { $_.Value }\\); \"`n=== Lines around 'tel:' ===\"; \\($html -split \"`n\" | Where-Object { $_ -match 'tel:' } | Select-Object -First 5\\); \"`n=== Subscribe / newsletter / email-related markup ===\"; \\($html -split \"`n\" | Where-Object { $_ -match '\\(?i\\)\\(subscribe|newsletter|stay up to date|sign up\\)' } | Select-Object -First 8\\);)"
+    ]
+  }
+}
