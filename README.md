@@ -160,37 +160,3 @@ The suite was authored with the **playwright-test-** agent workflow:
 Agent definitions live in `.github/agents/`. They run via the VS Code Copilot
 loop using the Playwright MCP server configured in `.vscode/mcp.json`.
 
----
-
-## Configuration highlights
-
-| Setting | Value |
-|---|---|
-| `baseURL` | `https://focusgroup.co.uk` |
-| `locale` / `timezone` | `en-GB` / `Europe/London` |
-| `retries` | 2 in CI, 0 locally |
-| `trace` | `on-first-retry` |
-| `screenshot` | `only-on-failure` |
-| `video` | `retain-on-failure` |
-| `forbidOnly` | `true` in CI |
-
----
-
-## Best-practice notes
-
-- **Web-first assertions** — `expect(locator).toBeVisible()` instead of manual waits.
-- **Role-based locators** — `getByRole`, `getByLabel` where possible; CSS fallbacks scoped through Page Objects.
-- **No `networkidle`** — every test waits on a meaningful DOM state.
-- **Per-test fresh context** — cookies and storage isolated by default.
-- **Third-party noise filtering** — `@observability` tests filter known patterns (Trustpilot, Vimeo, OneTrust, GA) so assertions target first-party errors only.
-- **Soft skips** — when a feature is absent in the current run, tests use `test.skip()` with a clear reason rather than throwing flaky failures.
-- **Known production issues** — `footer-links.spec.ts` allow-lists `/site-map/` (HTTP 500 in production) via `KNOWN_BROKEN`; the annotation surfaces it in the HTML report.
-- **Accessibility budget** — `@a11y` tests hard-fail on `critical` violations only and annotate `serious`/`moderate`, keeping the gate useful without being red-on-arrival.
-
----
-
-## Open follow-ups
-
-- Re-target newsletter scenarios at `/sign-up-to-marketing/` once that page's form is inspected (see `specs/plan.md` §5).
-- Add cross-browser projects (`webkit`, `firefox`) once the Chromium baseline is trusted in CI.
-- Wire `@a11y` tests into PR checks with the HTML report uploaded as an artifact.
